@@ -1,0 +1,133 @@
+# Agenda-Buena
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp4
+{
+    class Agenda { 
+
+        public int cantidad = 0;
+        int cant;
+        public void Añadir()
+        {
+            int cant = cantidad;
+            cantidad++;
+                      
+            persona[] person = new persona[cantidad]; // creamos un objeto de arrays de 1 valor, iremos sumando cada vez que se invoca el metodo
+            person[cant] = new persona(); // creamos el objeto posición 0, lo invocamos para darle valores.
+            Console.Write("Nombre: ");
+            person[cant].nombre = Console.ReadLine();
+            Console.Write("DNI: ");
+            person[cant].dni = Console.ReadLine();
+            Console.Write("Edad: ");
+            person[cant].edad = int.Parse(Console.ReadLine());
+
+        }
+        public void Consultar() {
+            string busqueda;
+            
+            Console.WriteLine("consultar");
+            Console.Write("introduzca el nombre:");
+            busqueda = Console.ReadLine();
+            persona[] person = new persona[cantidad];
+            person[cant] = new persona();
+            Console.WriteLine(person[0].nombre);
+
+            for (int cant = 0; cant<cantidad; cant++) {
+                person[cant] = new persona();
+                if (person[cant].nombre == busqueda)
+                {
+
+                    Console.WriteLine("OK!!!!");
+                }
+                else
+                {
+                    Console.WriteLine("NO SE ENCUENTRA!!");
+                }
+
+            }
+
+
+
+        }
+        public void Modificar() { Console.WriteLine("modif"); }
+    }
+    class persona
+    {
+        public int edad = 10;
+        public string nombre;
+        public string dni;
+        string profesion;
+    }
+
+    class animal
+    {
+        public int edad;
+        public string raza;
+        public string nombre;
+        public int chip;
+
+    }
+
+    class aliens
+    {
+        public int edad = 10;
+        public string nombre;
+        string planeta;
+        string raza;
+    }
+
+    class Program // hacer array de objetos y darles nombres.
+    {
+        static void Main(string[] args)
+        {
+
+            Console.WriteLine("AGENDA");
+
+            Agenda agenda = new Agenda();
+            int opt=1;
+            
+            while (opt != 0)
+            {
+                Console.WriteLine("Seleccione la opción");
+                Console.WriteLine("1. consultar");
+                Console.WriteLine("2. añadir");
+                Console.WriteLine("3. modificar");
+                Console.WriteLine("0. salir");
+                opt = int.Parse(Console.ReadLine());
+
+
+                switch (opt)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        agenda.Consultar();
+                        break;
+                    case 2:
+                        agenda.Añadir();
+                        break;
+                    case 3:
+                        agenda.Modificar();
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+           /* aliens[] a = new aliens[5];
+            for (int i = 0; i < 5; i++)
+            {
+                a[i] = new aliens();
+            }
+            a[2].nombre = "eric";
+            Console.WriteLine(a[2].nombre);
+            */
+            Console.ReadKey();
+        }
+    }
+}
